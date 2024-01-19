@@ -6,11 +6,11 @@ defmodule ToDo.Tasks.Task do
   use Ecto.Schema
 
   @type t :: %__MODULE__{
-    id: nil | Ecto.UUID.t(),
-    title: nil | String.t(),
-    description: nil | String.t(),
-    is_done?: boolean()
-  }
+          id: nil | Ecto.UUID.t(),
+          title: nil | String.t(),
+          description: nil | String.t(),
+          is_done?: boolean()
+        }
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
