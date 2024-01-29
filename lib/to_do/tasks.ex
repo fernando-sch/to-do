@@ -12,4 +12,15 @@ defmodule ToDo.Tasks do
     |> Task.changeset(attrs)
     |> Repo.insert()
   end
+
+  @spec get_task(Ecto.UUID.t()) :: {:ok, Task.t()} | {:error, :not_found | :invalid_id}
+  def get_task(task_id) do
+    with {:ok, _} <- Repo.cast_id(task_id),
+         %Task{} = task <- Repo.get(Task, task_id) do
+      {:ok, task}
+    else
+      nil -> {:error, :not_found}
+      {:error, :invalid_id} -> {:error, :invalid_id}
+    end
+  end
 end
