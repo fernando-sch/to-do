@@ -2,7 +2,7 @@ defmodule ToDo.Factory do
   @moduledoc """
     Factory of fixtures using ex-machina lib, for tests
   """
-  use ExMachina.Ecto, repo: Teaching.Repo
+  use ExMachina.Ecto, repo: ToDo.Repo
 
   alias ToDo.Tasks.Task
 
