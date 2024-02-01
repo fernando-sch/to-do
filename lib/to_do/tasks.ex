@@ -23,4 +23,11 @@ defmodule ToDo.Tasks do
       {:error, :invalid_id} -> {:error, :invalid_id}
     end
   end
+
+  @spec update_task(Task.t(), map()) :: {:ok, Task.t()} | {:error, Ecto.Changeset.t()}
+  def update_task(%Task{} = task, %{} = attrs) do
+    task
+    |> Task.changeset(attrs)
+    |> Repo.update()
+  end
 end
