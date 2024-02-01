@@ -8,11 +8,13 @@ defmodule ToDo.TasksTest do
   describe "create_task/1" do
     test "creates a task" do
       attrs = Factory.params_for(:task)
-      assert Tasks.create_task(attrs) == {:ok, %Task{}}
+      assert {:ok, %Task{}} = Tasks.create_task(attrs)
     end
 
     test "returns error for empty attrs" do
-      assert Tasks.create_task(%{}) == {:error, %Ecto.Changeset{}}
+      {:error, changeset} = Tasks.create_task(%{})
+
+      assert errors_on(changeset) == %{title: ["can't be blank"]}
     end
   end
 
@@ -28,6 +30,24 @@ defmodule ToDo.TasksTest do
 
     test "returns error if task don't exist" do
       assert Tasks.get_task(Ecto.UUID.generate()) == {:error, :not_found}
+    end
+  end
+
+  describe "update_task/1" do
+    test "updates task" do
+      task = Factory.insert(:task, title: "Task Title", description: nil)
+      attrs = %{title: "New Task Title", description: "Task description"}
+      {:ok, task} = Tasks.update_task(task, attrs)
+
+      assert task.title == attrs.title
+      assert task.description == attrs.description
+    end
+
+    test "returns error for invalid update" do
+      task = Factory.insert(:task, title: "Task Title")
+      {:error, changeset} = Tasks.update_task(task, %{title: nil})
+
+      assert errors_on(changeset) == %{title: ["can't be blank"]}
     end
   end
 end
