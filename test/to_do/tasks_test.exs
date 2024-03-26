@@ -50,4 +50,12 @@ defmodule ToDo.TasksTest do
       assert errors_on(changeset) == %{title: ["can't be blank"]}
     end
   end
+
+  describe "delete_task/1" do
+    test "deletes task" do
+      task = Factory.insert(:task)
+      {:ok, _del_task} = Tasks.delete_task(task)
+      refute Repo.exists?(Task, id: task.id)
+    end
+  end
 end

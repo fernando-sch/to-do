@@ -30,4 +30,7 @@ defmodule ToDo.Tasks do
     |> Task.changeset(attrs)
     |> Repo.update()
   end
+
+  @spec delete_task(Task.t()) :: {:ok, Task.t()} | {:error, Ecto.Changeset.t()}
+  def delete_task(%Task{} = task), do: Repo.delete(task)
 end
