@@ -5,6 +5,13 @@ defmodule ToDo.TasksTest do
   alias ToDo.Tasks
   alias ToDo.Tasks.Task
 
+  describe "list_tasks/0" do
+    test "returns a list of tasks" do
+      tasks = Factory.insert_list(4, :task)
+      assert Tasks.list_tasks() == tasks
+    end
+  end
+
   describe "create_task/1" do
     test "creates a task" do
       attrs = Factory.params_for(:task)
