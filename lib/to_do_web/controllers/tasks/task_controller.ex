@@ -5,6 +5,12 @@ defmodule ToDoWeb.Tasks.TaskController do
 
   alias ToDo.Tasks
 
+  def index(conn, _params) do
+    tasks = Tasks.list_tasks()
+
+    render(conn, :index, tasks: tasks)
+  end
+
   def create(conn, params) do
     with {:ok, task} <- Tasks.create_task(params) do
       conn

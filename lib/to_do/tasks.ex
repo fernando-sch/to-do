@@ -6,6 +6,9 @@ defmodule ToDo.Tasks do
   alias ToDo.Tasks.Task
   alias ToDo.Repo
 
+  @spec list_tasks() :: list(Task.t())
+  def list_tasks, do: Repo.all(Task)
+
   @spec create_task(map()) :: {:ok, Task.t()} | {:error, Ecto.Changeset.t()}
   def create_task(%{} = attrs) do
     %Task{}
