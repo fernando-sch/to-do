@@ -18,7 +18,20 @@ defmodule ToDoWeb.Tasks.TaskControllerTest do
     end
   end
 
+  describe "index/2" do
+    test "returns 200 listing all tasks" do
+      tasks = Factory.insert_list(4, :task)
+      conn = get(build_conn(), "/api/tasks")
+      body = json_response(conn, 200)
+      assert body["data"] == build_index_body(tasks)
+    end
+  end
+
   ## Helpers
+
+  defp build_index_body(tasks) do
+    Enum.map(tasks, &build_show_body/1)
+  end
 
   defp build_show_body(task) do
     %{
