@@ -7,6 +7,8 @@ defmodule ToDoWeb.Router do
 
   scope "/api", ToDoWeb do
     pipe_through :api
+
+    resources "/tasks", Tasks.TaskController, only: [:create]
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
