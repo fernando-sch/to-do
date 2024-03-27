@@ -25,4 +25,11 @@ defmodule ToDoWeb.Tasks.TaskController do
       render(conn, :show, task: task)
     end
   end
+
+  def delete(conn, %{"id" => task_id}) do
+    with {:ok, task} <- Tasks.get_task(task_id),
+         {:ok, _} <- Tasks.delete_task(task) do
+      send_resp(conn, :no_content, "")
+    end
+  end
 end
