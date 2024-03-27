@@ -18,4 +18,11 @@ defmodule ToDoWeb.Tasks.TaskController do
       |> render(:show, task: task)
     end
   end
+
+  def update(conn, %{"id" => task_id} = params) do
+    with {:ok, task} <- Tasks.get_task(task_id),
+         {:ok, task} <- Tasks.update_task(task, params) do
+      render(conn, :show, task: task)
+    end
+  end
 end
