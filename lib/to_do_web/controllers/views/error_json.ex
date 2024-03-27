@@ -10,7 +10,7 @@ defmodule ToDoWeb.ErrorJSON do
   # the template name. For example, "404.json" becomes
   # "Not Found".
   def render("422.json", %{errors: errors}) do
-    %{errors: errors}
+    %{errors: %{"detail" => errors}}
   end
 
   def render(template, _assigns) do
