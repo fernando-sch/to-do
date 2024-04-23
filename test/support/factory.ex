@@ -10,7 +10,7 @@ defmodule ToDo.Factory do
     %Task{
       title: sequence("title_"),
       description: sequence("fancy_description_"),
-      is_completed?: false
+      is_completed: false
     }
   end
 end

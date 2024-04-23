@@ -10,7 +10,7 @@ defmodule ToDo.Tasks.Task do
           id: nil | Ecto.UUID.t(),
           title: nil | String.t(),
           description: nil | String.t(),
-          is_completed?: boolean()
+          is_completed: boolean()
         }
 
   @primary_key {:id, :binary_id, autogenerate: true}
@@ -18,7 +18,7 @@ defmodule ToDo.Tasks.Task do
   schema "tasks" do
     field(:title, :string)
     field(:description, :string)
-    field(:is_completed?, :boolean, default: false)
+    field(:is_completed, :boolean, default: false)
 
     timestamps()
   end
