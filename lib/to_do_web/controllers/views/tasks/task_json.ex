@@ -11,6 +11,7 @@ defmodule ToDoWeb.Tasks.TaskJSON do
 
   def data(%Task{} = task) do
     %{
+      id: task.id,
       title: task.title,
       description: task.description,
       is_completed: task.is_completed
