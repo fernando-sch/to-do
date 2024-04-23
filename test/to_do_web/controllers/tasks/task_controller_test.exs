@@ -92,7 +92,7 @@ defmodule ToDoWeb.Tasks.TaskControllerTest do
     %{
       "title" => task.title,
       "description" => task.description,
-      "is_completed?" => task.is_completed?
+      "is_completed" => task.is_completed
     }
     |> Map.merge(custom_attrs)
   end
