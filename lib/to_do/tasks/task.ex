@@ -25,7 +25,7 @@ defmodule ToDo.Tasks.Task do
 
   @spec changeset(t(), map()) :: Ecto.Changeset.t()
   def changeset(%__MODULE__{} = task, %{} = attrs) do
-    fields = ~w(title description)a
+    fields = ~w(title description is_completed)a
     required_fields = ~w(title)a
 
     task
