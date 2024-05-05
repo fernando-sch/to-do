@@ -50,6 +50,14 @@ defmodule ToDo.TasksTest do
       assert task.description == attrs.description
     end
 
+    test "completes task" do
+      task = Factory.insert(:task, is_completed: false)
+      attrs = %{is_completed: true}
+      {:ok, task} = Tasks.update_task(task, attrs)
+
+      assert task.is_completed
+    end
+
     test "returns error for invalid update" do
       task = Factory.insert(:task, title: "Task Title")
       {:error, changeset} = Tasks.update_task(task, %{title: nil})
