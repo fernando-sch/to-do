@@ -1,13 +1,19 @@
-# ToDo
+# TO DO APP
 
 To start your Phoenix server:
 
-  * Run `mix setup` to install and setup dependencies
-  * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
+  * Run `docker compose run --rm web bash` 
+  * Run `mix deps.get` inside the docker bash to install and setup dependencies
+  * Run `mix ecto.create && mix ecto.migrate` inside the docker bash to setup your database
+  * You can close your docker container
+  * Run `docker compose up web` to start your phoenix server
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+To run the tests
+
+  * Run `docker compose run --rm test bash` 
+  * Run `mix test` inside the docker bash to run all the tests
 
 ## Learn more
 
